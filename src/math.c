@@ -1,15 +1,18 @@
-#include "./math.h"
+program Math;
 
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+uses
+  SysUtils, Math;
 
-float HALF_FOV_ANGLE_RADIANS = ((FOV_ANGLE / 180.0) * M_PI) / 2;
+const
+  FOV_ANGLE = 90.0;  // Asumiendo un ángulo de FOV de 90 grados
+  HALF_FOV_ANGLE_RADIANS = (FOV_ANGLE / 180.0 * Pi) / 2;
 
-float transform3Dto2D(float xy, float z) {
-  return xy / ((z)*tan(HALF_FOV_ANGLE_RADIANS));
-}
+function Transform3Dto2D(xy, z: Float): Float;
+begin
+  Result := xy / (z * Tan(HALF_FOV_ANGLE_RADIANS));
+end;
 
-float randF(float min, float max) {
-  return min + (float)rand() / ((float)RAND_MAX / (max - min));
-}
+function RandF(min, max: Float): Float;
+begin
+  Result := min + Random * (max - min);
+end;
